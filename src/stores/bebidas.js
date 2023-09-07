@@ -30,5 +30,6 @@ export const useBebidasStore = defineStore("bebidas", () => {
     categorias,
     busqueda,
     obtenerRecetas,
+    recetas,
   };
 });
