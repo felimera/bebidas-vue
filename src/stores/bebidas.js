@@ -10,7 +10,7 @@ export const useBebidasStore = defineStore("bebidas", () => {
     categoria: "",
   });
 
-  onMounted(async () => {
+  onMounted(async function () {
     const {
       data: { drinks },
     } = await axios(
@@ -19,8 +19,13 @@ export const useBebidasStore = defineStore("bebidas", () => {
     categorias.value = drinks;
   });
 
+  function obtenerRecetas() {
+    console.log("consultando api");
+  }
+
   return {
     categorias,
     busqueda,
+    obtenerRecetas,
   };
 });
