@@ -1,10 +1,15 @@
     
 <script setup>
-import { RouterLink } from 'vue-router';
+import { computed } from 'vue';
+import { RouterLink, useRoute } from 'vue-router';
+
+const route = useRoute();
+
+const paginaInicio = computed(() => route.name === 'inicio');
 </script>
 
 <template>
-    <header class="bg-slate-800">
+    <header class="bg-slate-800" :class="{ header: paginaInicio }">
         <div class="mx-auto container px-5 py-16">
             <div class="flex justify-between items-center">
                 <div>
@@ -14,7 +19,8 @@ import { RouterLink } from 'vue-router';
                 </div>
 
                 <nav class="flex gap-4">
-                    <RouterLink :to="{ name: 'inicio' }" class="text-white uppercase font-bold" active-class="text-orange-500">
+                    <RouterLink :to="{ name: 'inicio' }" class="text-white uppercase font-bold"
+                        active-class="text-orange-500">
                         Inicio
                     </RouterLink>
 
@@ -25,7 +31,7 @@ import { RouterLink } from 'vue-router';
                 </nav>
             </div>
 
-            <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
+            <form class="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6" v-if="paginaInicio">
 
                 <div class="space-y-4">
                     <label class="block text-white uppercase font-extrabold text-lg" for="ingrediente">
@@ -52,3 +58,11 @@ import { RouterLink } from 'vue-router';
         </div>
     </header>
 </template>
+
+<style>
+.header {
+    background-image: url('/img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+</style>
