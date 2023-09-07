@@ -4,8 +4,7 @@ import { defineStore } from "pinia";
 export const useModalStore = defineStore("modal", () => {
   const modal = ref(false);
 
-  handleClickModal();
-  {
+  function handleClickModal() {
     modal.value = !modal.value;
   }
 
