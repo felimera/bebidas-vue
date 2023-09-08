@@ -24,17 +24,29 @@ export const useFavoritoStore = defineStore("favoritos", () => {
     localStorage.setItem("favoritos", JSON.stringify(favoritos.value));
   }
 
-  function existeFavoritos(id) {
+  function existeFavoritos() {
     const favoritosLocalStorage =
       JSON.parse(localStorage.getItem("favoritos")) ?? [];
-    return favoritosLocalStorage.some((favorito) => favorito.idDrink === id);
+    return favoritosLocalStorage.some(
+      (favorito) => favorito.idDrink === bebidas.receta.idDrink
+    );
+  }
+
+  function eliminarFavorito() {
+    favoritos.value = favoritos.value.filter(
+      (favorito) => favorito.idDrink !== bebidas.receta.idDrink
+    );
+  }
+
+  function agreggarFavorito() {
+    favoritos.value.push(bebidas.receta);
   }
 
   function handleClickFavorito() {
-    if (existeFavoritos(bebidas.receta.idDrink)) {
-      console.log("Ya existe....");
+    if (existeFavoritos()) {
+      eliminarFavorito();
     } else {
-      favoritos.value.push(bebidas.receta);
+      agreggarFavorito();
     }
   }
 
