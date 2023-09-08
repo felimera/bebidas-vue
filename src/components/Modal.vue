@@ -74,7 +74,8 @@ const formatearIngredientes = () => {
 
                                 <button type="button"
                                     class="w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
-                                    @click="favoritos.handleClickFavorito">Agregar a Favoritos
+                                    @click="favoritos.handleClickFavorito">
+                                    {{ modal.textoBoton }}
                                 </button>
                             </div>
                         </DialogPanel>
