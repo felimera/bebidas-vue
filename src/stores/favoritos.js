@@ -20,13 +20,23 @@ export const useFavoritoStore = defineStore("favoritos", () => {
     }
   );
 
-  const sincronizarLocalStorage = () => {
+  function sincronizarLocalStorage() {
     localStorage.setItem("favoritos", JSON.stringify(favoritos.value));
-  };
+  }
 
-  const handleClickFavorito = () => {
-    favoritos.value.push(bebidas.receta);
-  };
+  function existeFavoritos(id) {
+    const favoritosLocalStorage =
+      JSON.parse(localStorage.getItem("favoritos")) ?? [];
+    return favoritosLocalStorage.some((favorito) => favorito.idDrink === id);
+  }
+
+  function handleClickFavorito() {
+    if (existeFavoritos(bebidas.receta.idDrink)) {
+      console.log("Ya existe....");
+    } else {
+      favoritos.value.push(bebidas.receta);
+    }
+  }
 
   return {
     favoritos,
