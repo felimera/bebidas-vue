@@ -6,6 +6,10 @@ export const useFavoritoStore = defineStore("favoritos", () => {
   const bebidas = useBebidasStore();
   const favoritos = ref([]);
 
+  onMounted(() => {
+    favoritos.value = JSON.parse(localStorage.getItem("favoritos")) ?? [];
+  });
+
   watch(
     favoritos,
     () => {
