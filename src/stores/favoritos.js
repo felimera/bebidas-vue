@@ -41,6 +41,9 @@ export const useFavoritoStore = defineStore("favoritos", () => {
     favoritos.value = favoritos.value.filter(
       (favorito) => favorito.idDrink !== bebidas.receta.idDrink
     );
+
+    notificaciones.mostrar = true;
+    notificaciones.texto = "Eliminado de Favoritos";
   }
 
   function agreggarFavorito() {
@@ -48,10 +51,6 @@ export const useFavoritoStore = defineStore("favoritos", () => {
 
     notificaciones.mostrar = true;
     notificaciones.texto = "Se agregó a favoritos";
-
-    setTimeout(() => {
-      notificaciones.$reset();
-    }, 3000);
   }
 
   function handleClickFavorito() {
